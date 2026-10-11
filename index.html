@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>notlogicbro — mirror</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩸</text></svg>">
+<style>
+:root{--bg:#050004;--red:#d10a1f;--dark:#5a0010;--txt:#f4e8ea;--mute:#b8939a;--mx:50%;--my:30%}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font:16px/1.55 -apple-system,"SF Pro Display","Inter",system-ui,sans-serif;color:var(--txt);background:var(--bg);min-height:100vh;overflow-x:hidden}
+@media(pointer:fine){body,a,button{cursor:none}}
+.bg{position:fixed;inset:0;z-index:-1;background:
+ radial-gradient(500px circle at var(--mx) var(--my),rgba(255,20,40,.28),transparent 60%),
+ radial-gradient(900px 600px at 10% 0%,#7a0012 0%,transparent 60%),
+ radial-gradient(800px 700px at 100% 100%,#4a000c 0%,transparent 60%),var(--bg)}
+.bg i{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;animation:float 14s ease-in-out infinite alternate}
+.bg i:nth-child(1){width:360px;height:360px;background:#b00018;left:-80px;top:30%}
+.bg i:nth-child(2){width:300px;height:300px;background:#ff1a33;right:-60px;top:8%;animation-delay:-6s;opacity:.3}
+@keyframes float{to{transform:translate(60px,-70px) scale(1.2)}}
+.glass{position:relative;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.03));backdrop-filter:blur(28px) saturate(190%);-webkit-backdrop-filter:blur(28px) saturate(190%);border:1px solid rgba(255,255,255,.16);border-radius:26px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(255,255,255,.05),0 20px 50px -15px rgba(120,0,15,.6);overflow:hidden}
+.glass::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.22) 0,transparent 35%);opacity:.5;pointer-events:none;border-radius:inherit}
+header{position:sticky;top:12px;z-index:20;margin:12px auto 0;max-width:980px;width:calc(100% - 24px);display:flex;align-items:center;gap:14px;padding:10px 16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
+.logo svg{width:42px;height:46px;overflow:visible}
+.heart{transform-origin:50% 55%;animation:beat 1.2s infinite;filter:drop-shadow(0 0 8px #ff1030)}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(.98)}45%{transform:scale(1.09)}}
+.d{fill:#d10a1f;animation:drip 2.4s infinite ease-in;transform-box:fill-box;transform-origin:top;opacity:0}
+.d:nth-of-type(2){animation-delay:.8s}.d:nth-of-type(3){animation-delay:1.5s}
+@keyframes drip{0%{transform:translateY(-4px) scale(.4);opacity:0}15%{opacity:1}100%{transform:translateY(26px) scale(1);opacity:0}}
+nav{margin-left:auto;display:flex;gap:6px}
+.btn{font:inherit;color:var(--txt);border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);backdrop-filter:blur(10px);padding:9px 18px;border-radius:99px;transition:transform .25s cubic-bezier(.2,.9,.3,1.4),background .3s,box-shadow .3s;text-decoration:none;display:inline-block}
+.btn:hover{background:rgba(209,10,31,.35);box-shadow:0 0 24px rgba(255,20,40,.5)}
+.btn:active{transform:scale(.92)}
+.btn.on{background:linear-gradient(135deg,#ff2a40,#7d0010);box-shadow:0 0 22px rgba(255,20,40,.6),inset 0 1px 0 rgba(255,255,255,.4)}
+main{max-width:980px;margin:0 auto;padding:28px 12px 80px}
+h1{font-size:clamp(32px,6vw,56px);line-height:1.05;margin:22px 0 6px;background:linear-gradient(180deg,#fff 0,#ff3347 55%,#6d000f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mute);margin-bottom:26px}
+.view{display:none;animation:in .6s cubic-bezier(.2,.8,.2,1)}.view.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(22px);filter:blur(8px)}}
+.post{padding:18px;margin-bottom:18px;opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.post.show{opacity:1;transform:none}
+.post .meta{font-size:13px;color:var(--mute);display:flex;justify-content:space-between;margin-bottom:10px}
+.post .meta a{color:#ff6b7b;text-decoration:none}
+.post .txt{word-break:break-word}.post .txt a{color:#ff6b7b}
+.media{display:grid;gap:8px;margin:12px 0 4px}
+.media img,.media video{width:100%;max-height:640px;object-fit:cover;border-radius:18px;display:block;background:#000}
+.media video.round{width:260px;height:260px;border-radius:50%;margin:auto;object-fit:cover;box-shadow:0 0 0 3px #d10a1f,0 0 40px rgba(255,20,40,.5)}
+.media audio{width:100%;filter:hue-rotate(-30deg) saturate(2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.game{padding:0;text-align:left;color:inherit;font:inherit;background:none;border:0;transition:transform .35s cubic-bezier(.2,.9,.3,1.3)}
+.game:hover{transform:translateY(-6px) scale(1.02)}.game:active{transform:scale(.95)}
+.game .glass{border-radius:22px}
+.game .cv{aspect-ratio:16/10;background:linear-gradient(135deg,#8a0013,#1a0006);position:relative;display:grid;place-items:center;font-weight:800;font-size:20px;text-align:center;padding:10px}
+.game .cv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.game .nm{padding:12px 14px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.game .nm b{color:#ff3347}
+#modal{position:fixed;inset:0;z-index:50;display:none;padding:12px;background:rgba(0,0,0,.6);backdrop-filter:blur(14px)}
+#modal.on{display:flex;animation:in .45s}
+#modal .glass{flex:1;display:flex;flex-direction:column;border-radius:28px}
+.bar{display:flex;gap:8px;align-items:center;padding:12px 14px;flex-wrap:wrap}
+.bar h3{margin-right:auto}
+#modal iframe{flex:1;border:0;width:100%;background:#000;border-radius:0 0 26px 26px}
+.note{color:var(--mute);font-size:13px;text-align:center;padding:26px}
+#blood{position:fixed;inset:0;pointer-events:none;z-index:99}
+#cur{position:fixed;left:0;top:0;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:radial-gradient(circle at 35% 35%,#ff5a6a,#b00018 60%,#4a0008);box-shadow:0 0 14px #ff1030;pointer-events:none;z-index:100;transition:width .2s,height .2s}
+#cur.p{width:28px;height:28px;margin:-14px 0 0 -14px}
+@media(pointer:coarse){#cur,#blood{display:none}}
+</style>
+</head>
+<body>
+<div class="bg"><i></i><i></i></div>
+<canvas id="blood"></canvas><div id="cur"></div>
+
+<header class="glass">
+ <div class="logo">
+  <svg viewBox="0 0 100 110"><g class="heart"><path d="M50 92C18 66 6 48 6 32 6 18 17 9 30 9c8 0 15 4 20 11C55 13 62 9 70 9c13 0 24 9 24 23 0 16-12 34-44 60z" fill="url(#g)"/><path d="M28 22c-8 2-12 9-11 17" stroke="#ffb0b8" stroke-width="4" stroke-linecap="round" fill="none" opacity=".7"/></g>
+  <defs><radialGradient id="g" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#ff4a5c"/><stop offset=".6" stop-color="#b00018"/><stop offset="1" stop-color="#3d0008"/></radialGradient></defs>
+  <path class="d" d="M38 90q-5 8 0 11t5-4q0-4-5-7z"/><path class="d" d="M54 92q-5 8 0 11t5-4q0-4-5-7z"/><path class="d" d="M64 88q-4 7 0 10t4-4q0-4-4-6z"/></svg>
+  <span>notlogicbro</span>
+ </div>
+ <nav>
+  <button class="btn on" data-v="posts">Посты</button>
+  <button class="btn" data-v="games">Играть</button>
+ </nav>
+</header>
+
+<main>
+ <section class="view on" id="posts">
+  <h1>Кровавый зеркало-канал</h1>
+  <p class="sub">Автоматическое зеркало Telegram — фото, видео, кружки, голосовые и текст. Всё хранится на сайте, VPN не нужен. <a class="btn" href="https://t.me/notlogicbro" target="_blank" rel="noopener">Открыть в Telegram</a></p>
+  <div id="feed"></div>
+ </section>
+ <section class="view" id="games">
+  <h1>Игры</h1>
+  <p class="sub">Запускаются прямо на сайте. Если игра не открылась во встроенном окне — жми «В новой вкладке».</p>
+  <div class="grid" id="grid"></div>
+ </section>
+</main>
+
+<div id="modal"><div class="glass">
+ <div class="bar"><h3 id="mt"></h3>
+  <a class="btn" id="mo" target="_blank" rel="noopener">В новой вкладке</a>
+  <button class="btn" id="mf">На весь экран</button>
+  <button class="btn on" id="mc">Закрыть</button></div>
+ <iframe id="fr" allow="fullscreen; autoplay; gamepad; pointer-lock; clipboard-write" allowfullscreen></iframe>
+</div></div>
+
+<script>
+const GAMES=[["BO1 Zombies","http://vel.gg/bo1z"],["BO3 Cheese Cube","http://cheese-cube.pages.dev/"],["Black Ops 2","http://vibeslops.luckeysystems.com/"],["Modern Warfare 2","http://ovz-game-production.up.railway.app/"],["Skate 3","http://skate.aaddpp.lol/"],["CS Surf","http://surfd.net/"],["Halo CE","http://mitchellhynes.com/halo"],["PES 6","http://pes6.optijuegos.net/"],["The Simpsons: Hit & Run","http://shar-wasm.cjoseph.workers.dev/?skipmovie"],["Quake 1","http://q1.pieter.com/"],["Quake 2","http://q2.pieter.com/"],["Quake 3","http://q3.pieter.com/"],["Return to Castle Wolfenstein","http://rtcw.pieter.com/"],["Unreal Tournament","http://ut.pieter.com/"],["Half-Life","https://pixelsuft.github.io/hl/"],["Diablo","http://johnimril.github.io/diablo_web"]];
+const $=s=>document.querySelector(s), https=u=>u.replace(/^http:/,'https:');
+// views
+document.querySelectorAll('nav .btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav .btn').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===b.dataset.v));scrollTo({top:0,behavior:'smooth'})});
+// games
+$('#grid').innerHTML=GAMES.map(([n,u],i)=>`<button class="game" data-i="${i}"><div class="glass"><div class="cv">${n}<img loading="lazy" alt="" src="https://image.thum.io/get/width/500/crop/320/${https(u)}" onerror="this.remove()"></div><div class="nm">${n}<b>▶</b></div></div></button>`).join('');
+$('#grid').onclick=e=>{const g=e.target.closest('.game');if(!g)return;const [n,u]=GAMES[g.dataset.i];$('#mt').textContent=n;$('#mo').href=https(u);$('#fr').src=https(u);$('#modal').classList.add('on')};
+$('#mc').onclick=()=>{$('#modal').classList.remove('on');$('#fr').src='about:blank'};
+$('#mf').onclick=()=>$('#fr').requestFullscreen?.();
+// posts
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&(e.target.classList.add('show'),io.unobserve(e.target))),{threshold:.08});
+fetch('posts.json?'+Date.now()).then(r=>r.json()).then(ps=>{
+ if(!ps.length)throw 0;
+ $('#feed').innerHTML=ps.map(p=>{
+  const m=[...(p.photos||[]).map(s=>`<img loading="lazy" src="${s}" alt="">`),...(p.videos||[]).map(s=>`<video controls playsinline preload="metadata" src="${s}"></video>`),...(p.rounds||[]).map(s=>`<video class="round" controls loop playsinline preload="metadata" src="${s}"></video>`),...(p.voices||[]).map(s=>`<audio controls preload="none" src="${s}"></audio>`)].join('');
+  return `<article class="post glass"><div class="meta"><span>${new Date(p.date).toLocaleString('ru-RU')}</span><a href="https://t.me/notlogicbro/${p.id}" target="_blank" rel="noopener">#${p.id}</a></div><div class="txt">${p.text||''}</div>${m?`<div class="media">${m}</div>`:''}</article>`}).join('');
+ document.querySelectorAll('.post').forEach(p=>io.observe(p));
+}).catch(()=>$('#feed').innerHTML='<div class="glass note">Постов пока нет — запусти GitHub Action «sync» (см. README).</div>');
+// light follows mouse
+addEventListener('pointermove',e=>{document.documentElement.style.setProperty('--mx',e.clientX+'px');document.documentElement.style.setProperty('--my',e.clientY+'px')});
+// bleeding cursor
+if(matchMedia('(pointer:fine)').matches){
+ const c=$('#blood'),x=c.getContext('2d'),cur=$('#cur');let W,H,drops=[],mx=0,my=0,last=0;
+ const rs=()=>{W=c.width=innerWidth;H=c.height=innerHeight};rs();addEventListener('resize',rs);
+ const spawn=(n,s)=>{for(let i=0;i<n;i++)drops.push({x:mx+(Math.random()-.5)*8,y:my+6,vx:(Math.random()-.5)*s,vy:Math.random()*s,r:1.5+Math.random()*3,l:1,len:0})};
+ addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx}px,${my}px) rotate(-45deg)`;cur.style.left=cur.style.top='0';if(Date.now()-last>45){last=Date.now();spawn(1,1.2)}});
+ addEventListener('pointerdown',()=>{cur.classList.add('p');spawn(22,6)});addEventListener('pointerup',()=>cur.classList.remove('p'));
+ setInterval(()=>{if(Math.random()<.5)spawn(1,.3)},120);
+ (function t(){x.clearRect(0,0,W,H);drops=drops.filter(d=>d.l>0&&d.y<H);for(const d of drops){d.vy+=.14;d.x+=d.vx;d.y+=d.vy;d.l-=.008;d.len=Math.min(d.len+d.vy*.6,30);x.globalAlpha=Math.max(d.l,0);const g=x.createLinearGradient(0,d.y-d.len,0,d.y);g.addColorStop(0,'rgba(120,0,15,0)');g.addColorStop(1,'#d10a1f');x.strokeStyle=g;x.lineWidth=d.r*.8;x.beginPath();x.moveTo(d.x,d.y-d.len);x.lineTo(d.x,d.y);x.stroke();x.fillStyle='#e0172c';x.beginPath();x.arc(d.x,d.y,d.r,0,7);x.fill()}requestAnimationFrame(t)})();
+}
+</script>
+</body>
+</html>
